@@ -251,7 +251,7 @@ AddEventHandler("truck_logistics:startContract",function(data)
 					query_users = exports['ghmattimysql']:execute("SELECT * FROM `trucker_users` WHERE user_id = @user_id", {['@user_id'] = user_id}, function(query_users)
 						if query_users and query_users[1] then
 							if tonumber(query_users[1].product_type) >= tonumber(query[1].cargo_type) then
-								if tonumber(query_users[1].fragile) >= tonumber(query[1].fragile) then
+								if query_users[1].fragile ~= -1 tonumber(query_users[1].fragile) >= tonumber(query[1].fragile) then
 									if tonumber(query_users[1].valuable) >= tonumber(query[1].valuable) then
 										if tonumber(query_users[1].fast) >= tonumber(query[1].fast) then
 											if Config.habilidade_distancia[tonumber(query_users[1].distance)] >= tonumber(distance) then
